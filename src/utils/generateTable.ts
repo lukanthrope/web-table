@@ -7,8 +7,8 @@ export function generateTable() {
   for (let i = 1; i < 27; i++) {
     letterCode++;
     letter = String.fromCharCode(letterCode);
-    for (let j = 1; j < 25; j++) {
-      table[`${letter}${j}`] = '';
+    for (let j = 1; j <= 100; j++) {
+      table[`${letter}${j}`] = 'kek';
     }
   }
 
