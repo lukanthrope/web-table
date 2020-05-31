@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Cell from './Cell';
+import HeaderRow from './HeaderRow';
+import './tables.css';
 
 function Table() {
   const [rows, setRows] = useState<string[]>([]);
@@ -28,12 +30,13 @@ function Table() {
   }, []);
 
   return (
-    <div>
-      <table>
+    <div className="table-container">
+      <table className="table">
+        <HeaderRow names={rows} />
         <tbody>
           {cols.map((el: number) => (
             <tr key={el}>
-              <th>{el}</th>
+              <th className="row-header">{el}</th>
               {rows.map((s: string) => (
                 <Cell key={`${s}${el}`} cellId={`${s}${el}`} />
               ))}

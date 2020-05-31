@@ -21,12 +21,12 @@ function Cell({ cellId }: CellProps) {
   };
 
   return (
-    <th>
+    <td>
       <input 
         value={cellValue} 
         onChange={handleChange}
         />
-    </th>
+    </td>
   )
 }
 
