@@ -6,7 +6,7 @@
 
 .table {
   position: relative;
-  width: 3000px;
+  width: 2000px;
 }
 
 .table td, th, .table {
@@ -15,29 +15,38 @@
   border-collapse: collapse;
 }
 
-.table td {
-  resize: both;
-}
-
 .t-header {
   width: 10px;
+  overflow: auto;
+  resize: horizontal;
+}
+
+.table td {
+  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.table td:hover {
+  border: 2px solid rgb(91, 210, 250);
 }
 
 .row-header {
   width: 30px;
   background-color: rgb(206, 193, 193);
+  overflow: auto;
+  resize: vertical;
 }
 
 .table td input {
   border: none;
   position: relative;
-  width: 90%;
-  height: 100%;
+  width: 95%;
+  height: 90%;
 }
 
 .table td input:focus {
   outline: none;
-  border: 2px solid rgb(91, 210, 250);
-  border-radius: 0%;
+  border: none;
   z-index: 2;
 }
