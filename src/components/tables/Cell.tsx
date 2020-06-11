@@ -13,7 +13,7 @@ function Cell({ cellId }: CellProps) {
   const cellValue = useSelector(getTable);
   const dispatch = useDispatch();
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateCell({
       cell: cellId,
       data: e.target.value,

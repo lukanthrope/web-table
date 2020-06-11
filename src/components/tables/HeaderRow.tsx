@@ -7,8 +7,10 @@ interface CellProps {
 function HeaderRow({ names }: CellProps) {
   return (
     <thead>
-      <th></th>
-      { names.map((el: string) => <th className="t-header">{ el }</th> )}
+      <tr>
+        <th></th>
+        { names.map((el: string) => <th key={el} className="t-header">{ el }</th> )}
+      </tr>
     </thead>
   )
 }

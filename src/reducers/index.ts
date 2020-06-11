@@ -8,8 +8,6 @@ const initialState = IMap({
   table
 });
 
-console.log(initialState.get('table'));
-
 export type State = typeof initialState; 
 
 export default function(state = initialState, action: TableActionTypes) {
