@@ -5,7 +5,8 @@ import { UPDATE_CELL, TableActionTypes } from '../actions/tableAction.types';
 const table = generateTable();
 
 const initialState = IMap({
-  table
+  table,
+  activeCell: "A1",
 });
 
 export type State = typeof initialState; 
