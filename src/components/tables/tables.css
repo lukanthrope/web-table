@@ -27,7 +27,7 @@
   overflow-x: hidden;
 }
 
-.table td:hover {
+#active-cell {
   border: 2px solid rgb(91, 210, 250);
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../../reducers';
-import { updateCell } from '../../actions/table';
+import { updateCell, setActiveCell } from '../../actions/table';
 
 interface CellProps {
   key: string;
@@ -10,6 +10,8 @@ interface CellProps {
 
 function Cell({ cellId }: CellProps) {
   const getTable = (state: State) => state.get('table')[cellId];
+  const getActiveCell = (state: State) => state.get('activeCell');
+  const activeCell = useSelector(getActiveCell);
   const cellValue = useSelector(getTable);
   const dispatch = useDispatch();
 
@@ -20,11 +22,18 @@ function Cell({ cellId }: CellProps) {
     }));
   };
 
+  const handleActiveCell = () => {
+    dispatch(setActiveCell({
+      activeCell: cellId,
+    }));
+  }
+
   return (
-    <td>
+    <td id={activeCell === cellId ? 'active-cell' : ''}>
       <input 
         value={cellValue} 
         onChange={handleChange}
+        onClick={handleActiveCell}
         />
     </td>
   )
