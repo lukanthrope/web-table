@@ -20,7 +20,7 @@ export function incrementCellName(name: string): string {
   let nums: number = countLetters(name);
   let lets:string = name.substring(0, nums);
   let num: number = Number(name.substring(nums)) + 1;
-  if (num > 100) num = 1;
+  if (num > ROWS) num = 1;
   
   return `${lets}${num}`;
 }

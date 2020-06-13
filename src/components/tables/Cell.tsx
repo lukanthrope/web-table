@@ -18,8 +18,9 @@ function Cell({ cellId }: CellProps) {
   const thisRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (activeCell === cellId) thisRef.current?.focus();
-  }, [activeCell]);
+    if (activeCell === cellId) 
+      thisRef.current?.focus();
+  }, [activeCell, cellId]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateCell({
