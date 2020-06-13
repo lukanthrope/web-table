@@ -6,7 +6,7 @@
 
 .table {
   position: relative;
-  width: 2000px;
+  width: auto;
 }
 
 .table td, th, .table {

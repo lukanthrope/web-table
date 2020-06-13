@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, KeyboardEvent } from 'react';
 import Cell from './Cell';
 import HeaderRow from './HeaderRow';
 import './tables.css';

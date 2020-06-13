@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../../reducers';
 import { updateCell, setActiveCell } from '../../actions/table';
+import { incrementCellName } from '../../utils/stringUtils';
 
 interface CellProps {
   key: string;
@@ -14,6 +15,11 @@ function Cell({ cellId }: CellProps) {
   const activeCell = useSelector(getActiveCell);
   const cellValue = useSelector(getTable);
   const dispatch = useDispatch();
+  const thisRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (activeCell === cellId) thisRef.current?.focus();
+  }, [activeCell]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateCell({
@@ -26,7 +32,17 @@ function Cell({ cellId }: CellProps) {
     dispatch(setActiveCell({
       activeCell: cellId,
     }));
-  }
+  };
+
+  const incrementActiveCell = () => {
+    dispatch(setActiveCell({
+      activeCell: incrementCellName(activeCell),
+    }));
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    e.key === 'Enter' && incrementActiveCell()
+  };
 
   return (
     <td id={activeCell === cellId ? 'active-cell' : ''}>
@@ -34,6 +50,8 @@ function Cell({ cellId }: CellProps) {
         value={cellValue} 
         onChange={handleChange}
         onClick={handleActiveCell}
+        onKeyPress={handleKeyPress}
+        ref={thisRef}
         />
     </td>
   )
