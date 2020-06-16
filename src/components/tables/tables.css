@@ -5,26 +5,22 @@
 }
 
 .table {
-  position: relative;
-  width: auto;
-}
-
-.table td, th, .table {
-  
-  border: 1px solid black;
   border-collapse: collapse;
+  border-spacing: 0px;
+  width: 2000px;
 }
 
 .t-header {
-  width: 10px;
-  overflow: auto;
+  overflow: hidden;
   resize: horizontal;
 }
 
 .table td, .table td input {
-  overflow: auto;
   overflow-y: hidden;
   overflow-x: hidden;
+  min-width: 50px;
+  width: auto;
+  height: auto;
 }
 
 #active-cell {
@@ -38,11 +34,17 @@
   resize: vertical;
 }
 
+.table td, .table th {
+  border: 1px solid black;
+}
+
 .table td input {
   border: none;
   position: relative;
   width: 95%;
   height: 90%;
+  resize: both;
+  display: block;
 }
 
 .table td input:focus {

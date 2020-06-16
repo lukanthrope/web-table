@@ -8,17 +8,17 @@ function Table() {
   const [cols, setCols] = useState<number[]>([]);
 
 
-  const initializeRow = () => {
+  const initializeRow = (): void => {
     const r: string[] = [];
-    for (let i = 65; i <= 90; i++) {
+    for (let i: number = 65; i <= 90; i++) {
       r.push(String.fromCharCode(i));
     }
     setRows(r);
   };
 
-  const initializeCol = () => {
+  const initializeCol = (): void => {
     const temp: number[] = [];
-    for (let i = 1; i <= 100; i++)
+    for (let i: number = 1; i <= 100; i++)
       temp.push(i);
 
     setCols(temp);

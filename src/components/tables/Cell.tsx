@@ -22,26 +22,26 @@ function Cell({ cellId }: CellProps) {
       thisRef.current?.focus();
   }, [activeCell, cellId]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(updateCell({
       cell: cellId,
       data: e.target.value,
     }));
   };
 
-  const handleActiveCell = () => {
+  const handleActiveCell = (): void => {
     dispatch(setActiveCell({
       activeCell: cellId,
     }));
   };
 
-  const incrementActiveCell = () => {
+  const incrementActiveCell = (): void => {
     dispatch(setActiveCell({
       activeCell: incrementCellName(activeCell),
     }));
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     e.key === 'Enter' && incrementActiveCell()
   };
 
@@ -53,6 +53,7 @@ function Cell({ cellId }: CellProps) {
         onClick={handleActiveCell}
         onKeyPress={handleKeyPress}
         ref={thisRef}
+        data-testid={cellId}
         />
     </td>
   )

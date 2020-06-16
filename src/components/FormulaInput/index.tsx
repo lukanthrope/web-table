@@ -11,7 +11,7 @@ function FormulaInput() {
   const cellValue = useSelector(getCellValue);
   const dispatch = useDispatch();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(updateCell({
       cell: activeCell,
       data: e.target.value,
@@ -21,7 +21,11 @@ function FormulaInput() {
   return (
     <header>
       <span>fx</span>
-      <input value={cellValue} onChange={handleChange} />
+      <input 
+        value={cellValue} 
+        onChange={handleChange} 
+        data-testid="header-input"
+        />
     </header>
   )
 }

@@ -7,10 +7,10 @@ export function generateTable() {
   let letterCode: number = 64;
   let letter: string = '';
 
-  for (let i = 1; i < COLS; i++) {
+  for (let i: number = 1; i < COLS; i++) {
     letterCode++;
     letter = String.fromCharCode(letterCode);
-    for (let j = 1; j <= ROWS; j++) {
+    for (let j: number = 1; j <= ROWS; j++) {
       table[`${letter}${j}`] = '';
     }
   }
