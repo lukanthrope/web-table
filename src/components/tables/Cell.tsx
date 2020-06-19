@@ -10,7 +10,7 @@ interface CellProps {
 }
 
 function Cell({ cellId }: CellProps) {
-  const getTable = (state: State) => state.get('table')[cellId];
+  const getTable = (state: State) => state.get('table')[cellId].value;
   const getActiveCell = (state: State) => state.get('activeCell');
   const activeCell = useSelector(getActiveCell);
   const cellValue = useSelector(getTable);

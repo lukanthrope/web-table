@@ -11,7 +11,16 @@ export function generateTable() {
     letterCode++;
     letter = String.fromCharCode(letterCode);
     for (let j: number = 1; j <= ROWS; j++) {
-      table[`${letter}${j}`] = '';
+      table[`${letter}${j}`] = {
+        value: '',
+        style: {
+          background: 'white',
+          fontSize: '12px',
+          fontStyle: 'normal',
+          fontWeight: 'normal',
+          color: 'black',
+        }
+      };
     }
   }
 

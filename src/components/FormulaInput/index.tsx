@@ -7,7 +7,7 @@ import { updateCell } from '../../actions/table';
 function FormulaInput() {
   const getActiveCell = (state: State) => state.get('activeCell');
   const activeCell = useSelector(getActiveCell);
-  const getCellValue = (state: State) => state.get('table')[activeCell];
+  const getCellValue = (state: State) => state.get('table')[activeCell].value;
   const cellValue = useSelector(getCellValue);
   const dispatch = useDispatch();
 
