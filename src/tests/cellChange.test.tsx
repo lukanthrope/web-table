@@ -36,6 +36,6 @@ it ("Active cell changes when anon presses enter", () => {
   expect(store.getState().get('activeCell')).toBe(actCell);
 
   actCell = incrementCellName(actCell);
-  el && fireEvent.keyPress(el, { key: 'Enter', code: 13, charCode: 13 });
+  el && fireEvent.keyDown(el, { key: 'Enter', code: 13, charCode: 13 });
   expect(store.getState().get('activeCell')).toBe(actCell);
 });

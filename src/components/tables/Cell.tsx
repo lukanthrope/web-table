@@ -42,7 +42,8 @@ function Cell({ cellId }: CellProps) {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    e.key === 'Enter' && incrementActiveCell()
+    e.key === 'Enter' && incrementActiveCell();
+    e.key === 'Tab' && incrementActiveCell();
   };
 
   return (
@@ -51,7 +52,7 @@ function Cell({ cellId }: CellProps) {
         value={cellValue} 
         onChange={handleChange}
         onClick={handleActiveCell}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         ref={thisRef}
         data-testid={cellId}
         />
