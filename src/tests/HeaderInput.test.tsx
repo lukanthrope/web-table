@@ -8,8 +8,8 @@ import store from '../store';
 import Cell from '../components/tables/Cell';
 import FormulaInput from '../components/FormulaInput';
 
-let container1: any = null;
-let container2: any = null;
+let container1: HTMLElement | null = null;
+let container2: HTMLElement | null = null;
 
 beforeEach(() => {
   container1 = document.createElement("div");
@@ -20,34 +20,33 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  unmountComponentAtNode(container1);
-  container1.remove();
+  container1 &&
+    unmountComponentAtNode(container1) && container1.remove();
+  
   container1 = null;
 
-  unmountComponentAtNode(container2);
-  container2.remove();
+  container2 &&
+    unmountComponentAtNode(container2) && container2.remove();
+  
   container2 = null;
 });
 
-it ("Header input changes when any cell changes", () => {
-  const onChange = jest.fn();
-
-  const input = document.getElementsByTagName('input');
-  
+it ("Header input changes when any cell changes", () => {  
   act(() => {
     render(<Provider store={store}> <Cell cellId="A1" key="2222" /> </Provider>, container1);
   });
-  // container1.dispachEvent(new MouseEvent("click"));
+
   act(() => {
     render(<Provider store={store}> <FormulaInput /> </Provider>, container2);
   });
 
-  const headerInput: any = document.querySelector("[data-testid='header-input']");
-  const cellInput: any = document.querySelector("[data-testid='header-input']");
+    const headerInput: HTMLInputElement | null = document.querySelector("[data-testid='header-input']");
+    const cellInput: HTMLInputElement | null = document.querySelector("[data-testid='A1']");
 
-  expect(cellInput?.value).toBe(headerInput?.value);
-  fireEvent.click(cellInput);
-  fireEvent.change(headerInput, { target: { value: "kek" } });
+    expect(cellInput?.value).toBe(headerInput?.value);
 
-  expect(cellInput?.value).toBe(headerInput?.value);
+    cellInput && fireEvent.click(cellInput);
+    headerInput && fireEvent.change(headerInput, { target: { value: "kek" } });
+
+    expect(cellInput?.value).toBe(headerInput?.value);
 });
