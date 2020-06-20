@@ -1,5 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { 
+  useRef, 
+  useEffect,
+} from 'react';
 import { useDispatch } from 'react-redux';
+import { debounce } from 'lodash';
+ 
 import { setActiveCell } from '../../actions/table';
 import { incrementCellName } from '../../utils/stringUtils';
 
@@ -16,6 +21,12 @@ function Cell({ cellId }: CellProps) {
   const thisRef = useRef<HTMLInputElement>(null);
   const { activeCell } = useActiveCell();
   const [cellValue, setCellValue] = useCell(cellId);
+
+  const keyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    e.key === 'Enter' && incrementActiveCell();
+    e.key === 'Tab' && incrementActiveCell();
+  }
+  const delayedKeyDown = debounce(keyDown, 50);
 
   useEffect(() => {
     if (activeCell === cellId) 
@@ -35,8 +46,10 @@ function Cell({ cellId }: CellProps) {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    e.key === 'Enter' && incrementActiveCell();
-    e.key === 'Tab' && incrementActiveCell();
+    e.persist();
+    e.preventDefault();
+
+    delayedKeyDown(e);
   };
 
   return (
