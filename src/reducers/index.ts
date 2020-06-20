@@ -1,6 +1,11 @@
 import { Map as IMap } from 'immutable';
 import { generateTable } from '../utils/generateTable';
-import { UPDATE_CELL, SET_ACTIVE_CELL, TableActionTypes } from '../actions/tableAction.types';
+import { 
+  UPDATE_CELL, 
+  SET_ACTIVE_CELL,
+  UPDATE_CELL_STYLE, 
+  TableActionTypes,
+ } from '../actions/tableAction.types';
 
 const table = generateTable();
 
@@ -20,6 +25,13 @@ export default function(state = initialState, action: TableActionTypes) {
       });
     case SET_ACTIVE_CELL:
       return state.set('activeCell', action.payload.activeCell);
+    case UPDATE_CELL_STYLE: 
+      return state.update('table', prev => {
+        const newStyle = prev[action.payload.cell].style;
+        newStyle[action.payload.param] = action.payload.value;
+        prev[action.payload.cell].style = Object.assign({}, newStyle);
+        return prev;
+      })
     default:
       return state;
 }

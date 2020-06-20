@@ -1,19 +1,18 @@
 import React from 'react';
-import './style.css';
-import useActiveCell from '../../hooks/useActiveCell';
+import { useActiveCell } from '../../hooks';
 
 function FormulaInput() {
   const { setActiveCellValue, activeCellValue } = useActiveCell();
 
   return (
-    <header>
+    <div>
       <span>fx</span>
       <input 
         value={activeCellValue} 
         onChange={setActiveCellValue} 
         data-testid="header-input"
         />
-    </header>
+    </div>
   )
 }
 

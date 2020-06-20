@@ -1,4 +1,5 @@
 export const UPDATE_CELL = 'UPDATE_CELL';
+export const UPDATE_CELL_STYLE = 'UPDATE_CELL_STYLE';
 export const SET_ACTIVE_CELL = 'SET_ACTIVE_CELL';
 
 export interface CellPayload {
@@ -20,4 +21,15 @@ interface SetActiveCellAction {
   payload: ActiveCellPayload;
 };
 
-export type TableActionTypes = UpdateCellAction | SetActiveCellAction;
+export interface CellStylePayload {
+  cell: string;
+  param: string;
+  value: string;
+}
+
+interface UpdateCellStyleAction {
+  type: typeof UPDATE_CELL_STYLE;
+  payload: CellStylePayload;
+}
+
+export type TableActionTypes = UpdateCellAction | SetActiveCellAction | UpdateCellStyleAction;

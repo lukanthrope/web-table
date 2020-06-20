@@ -3,10 +3,23 @@ header {
   
   padding-top: 20px;
   padding-bottom: 5px;
+}
+
+header div {
+  width: 100%;
   display: flex;
   justify-content: space-around;
 }
 
 header input {
   width: 98%;
+}
+
+.tool-bar {
+  margin-bottom: 20px;
+  justify-content: start;
+}
+
+.tool-bar input {
+  width: 5%;
 }

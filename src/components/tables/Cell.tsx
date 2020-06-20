@@ -7,9 +7,7 @@ import { debounce } from 'lodash';
  
 import { setActiveCell } from '../../actions/table';
 import { incrementCellName } from '../../utils/stringUtils';
-
-import useActiveCell from '../../hooks/useActiveCell';
-import useCell from '../../hooks/useCell';
+import { useActiveCell, useCell, useCellStyle } from '../../hooks';
 
 interface CellProps {
   key: string;
@@ -18,9 +16,10 @@ interface CellProps {
 
 function Cell({ cellId }: CellProps) {
   const dispatch = useDispatch();
-  const thisRef = useRef<HTMLInputElement>(null);
+  const thisRef = useRef<HTMLInputElement | null>(null);
   const { activeCell } = useActiveCell();
   const [cellValue, setCellValue] = useCell(cellId);
+  const [cellStyle] = useCellStyle(cellId);
 
   const keyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     e.key === 'Enter' && incrementActiveCell();
@@ -55,7 +54,7 @@ function Cell({ cellId }: CellProps) {
   };
 
   return (
-    <td id={activeCell === cellId ? 'active-cell' : ''}>
+    <td id={activeCell === cellId ? 'active-cell' : ''} >
       <input 
         value={cellValue} 
         onChange={setCellValue}
@@ -63,6 +62,12 @@ function Cell({ cellId }: CellProps) {
         onKeyDown={handleKeyPress}
         ref={thisRef}
         data-testid={cellId}
+        style={{
+          'background': cellStyle.background,
+          'color': cellStyle.color,
+          'fontStyle': cellStyle.fontStyle,
+          'fontWeight': cellStyle.fontWeight as any,
+        }}
         />
     </td>
   )

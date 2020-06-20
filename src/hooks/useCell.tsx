@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { State } from '../reducers';
 import { updateCell } from '../actions/table';
 

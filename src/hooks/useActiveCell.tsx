@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { State } from '../reducers';
-import useCell from './useCell';
+import { useCell } from './';
 
 import { ActiveCellHook, ActiveCellHookResult, SetCellValue } from './hook.types';
 

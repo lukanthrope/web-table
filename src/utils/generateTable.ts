@@ -14,8 +14,7 @@ export function generateTable() {
       table[`${letter}${j}`] = {
         value: '',
         style: {
-          background: 'white',
-          fontSize: '12px',
+          background: '#ffffff',
           fontStyle: 'normal',
           fontWeight: 'normal',
           color: 'black',

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import store from '../store';
 
 import Cell from '../components/tables/Cell';
-import FormulaInput from '../components/FormulaInput';
+import FormulaInput from '../components/Header/FormulaInput';
 
 let container1: HTMLElement | null = null;
 let container2: HTMLElement | null = null;
