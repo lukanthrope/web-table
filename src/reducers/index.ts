@@ -7,7 +7,6 @@ const table = generateTable();
 const initialState = IMap({
   table,
   activeCell: "A1",
-  
 });
 
 export type State = typeof initialState; 

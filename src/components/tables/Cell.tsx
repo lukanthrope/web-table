@@ -1,8 +1,10 @@
 import React, { useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../../reducers';
-import { updateCell, setActiveCell } from '../../actions/table';
+import { useDispatch } from 'react-redux';
+import { setActiveCell } from '../../actions/table';
 import { incrementCellName } from '../../utils/stringUtils';
+
+import useActiveCell from '../../hooks/useActiveCell';
+import useCell from '../../hooks/useCell';
 
 interface CellProps {
   key: string;
@@ -10,24 +12,15 @@ interface CellProps {
 }
 
 function Cell({ cellId }: CellProps) {
-  const getTable = (state: State) => state.get('table')[cellId].value;
-  const getActiveCell = (state: State) => state.get('activeCell');
-  const activeCell = useSelector(getActiveCell);
-  const cellValue = useSelector(getTable);
   const dispatch = useDispatch();
   const thisRef = useRef<HTMLInputElement>(null);
+  const { activeCell } = useActiveCell();
+  const [cellValue, setCellValue] = useCell(cellId);
 
   useEffect(() => {
     if (activeCell === cellId) 
       thisRef.current?.focus();
   }, [activeCell, cellId]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    dispatch(updateCell({
-      cell: cellId,
-      data: e.target.value,
-    }));
-  };
 
   const handleActiveCell = (): void => {
     dispatch(setActiveCell({
@@ -50,7 +43,7 @@ function Cell({ cellId }: CellProps) {
     <td id={activeCell === cellId ? 'active-cell' : ''}>
       <input 
         value={cellValue} 
-        onChange={handleChange}
+        onChange={setCellValue}
         onClick={handleActiveCell}
         onKeyDown={handleKeyPress}
         ref={thisRef}
