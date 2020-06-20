@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../reducers';
 import { updateCell } from '../actions/table';
 
-function useCell(cellId: string) {
+import { CellHook, CellHookResult } from './hook.types';
+
+const useCell:CellHook = (cellId: string): CellHookResult => {
   const getTable = (state: State) => state.get('table')[cellId].value;
   const cellValue = useSelector(getTable);
   const dispatch = useDispatch();
