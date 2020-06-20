@@ -26,7 +26,7 @@ function Cell({ cellId }: CellProps) {
     e.key === 'Enter' && incrementActiveCell();
     e.key === 'Tab' && incrementActiveCell();
   }
-  const delayedKeyDown = debounce(keyDown, 50);
+  const delayedKeyDown = debounce(keyDown, 500);
 
   useEffect(() => {
     if (activeCell === cellId) 
@@ -46,10 +46,12 @@ function Cell({ cellId }: CellProps) {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    e.persist();
-    e.preventDefault();
+    if (e.key === 'Tab' || e.key === 'Enter') {
+      e.persist();
+      e.preventDefault();
 
-    delayedKeyDown(e);
+      delayedKeyDown(e);
+    }
   };
 
   return (
