@@ -20,6 +20,7 @@ function Cell({ cellId }: CellProps) {
   const { activeCell } = useActiveCell();
   const [cellValue, setCellValue] = useCell(cellId);
   const [cellStyle] = useCellStyle(cellId);
+  const { background, color, fontWeight, fontStyle } = cellStyle;
 
   const keyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     e.key === 'Enter' && incrementActiveCell();
@@ -63,10 +64,10 @@ function Cell({ cellId }: CellProps) {
         ref={thisRef}
         data-testid={cellId}
         style={{
-          'background': cellStyle.background,
-          'color': cellStyle.color,
-          'fontStyle': cellStyle.fontStyle,
-          'fontWeight': cellStyle.fontWeight as any,
+          'background': background,
+          'color': color,
+          'fontStyle': fontStyle,
+          'fontWeight': fontWeight,
         }}
         />
     </td>

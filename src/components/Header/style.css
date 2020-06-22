@@ -1,25 +1,33 @@
 header {
   width: 100%;
-  
   padding-top: 20px;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
 }
 
-header div {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-
-header input {
+header > div > input {
   width: 98%;
 }
 
 .tool-bar {
+  display: flex;
+  width: 30%;
   margin-bottom: 20px;
-  justify-content: start;
+  justify-content: space-around;
 }
 
 .tool-bar input {
-  width: 5%;
+  margin-left: 10px;
+  width: 50px;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+
+.graybg {
+  background-color: rgb(209, 205, 205);
+}
+
+.graybg-hover:hover {
+  background-color: rgb(209, 205, 205);
 }
