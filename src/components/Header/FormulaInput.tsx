@@ -1,13 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { State } from '../../reducers';
 import { useActiveCell } from '../../hooks';
 import parcer from '../../parser';
 
 function FormulaInput() {
   const { setActiveCellValue, activeCellValue } = useActiveCell();
+  const getAllCells = (state: State) => state.get('table');
+  const table = useSelector(getAllCells);
 
   const calculate = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      setActiveCellValue(parcer(activeCellValue).toString());
+      let newStr = activeCellValue.toLowerCase();
+      for (let key in table) {
+        let k = key.toLowerCase();
+
+        if (newStr.includes(k)) 
+          newStr = newStr.replace(new RegExp(k, "g"), table[key].value);
+      }
+      setActiveCellValue(parcer(newStr));
     }
   }
 
