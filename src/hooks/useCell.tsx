@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { State } from '../reducers';
@@ -11,10 +10,10 @@ const useCell:CellHook = (cellId: string): CellHookResult => {
   const cellValue = useSelector(getTable);
   const dispatch = useDispatch();
 
-  const setCellValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const setCellValue = (e: string): void => {
     dispatch(updateCell({
       cell: cellId,
-      data: e.target.value,
+      data: e,
     }));
   };
 

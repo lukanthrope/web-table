@@ -17,7 +17,7 @@ export function generateTable() {
           background: '#ffffff',
           fontStyle: 'normal',
           fontWeight: 'normal',
-          color: 'black',
+          color: '#000000',
         }
       };
     }

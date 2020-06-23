@@ -1,4 +1,4 @@
-export type SetCellValue = (e: React.ChangeEvent<HTMLInputElement>) => void;
+export type SetCellValue = (e: string) => void;
 export type SetCellStyle = (param: string, value: string) => void;
 
 export type ActiveCellHookResult = {

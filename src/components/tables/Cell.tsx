@@ -58,7 +58,7 @@ function Cell({ cellId }: CellProps) {
     <td id={activeCell === cellId ? 'active-cell' : ''} >
       <input 
         value={cellValue} 
-        onChange={setCellValue}
+        onChange={e => setCellValue(e.target.value)}
         onClick={handleActiveCell}
         onKeyDown={handleKeyPress}
         ref={thisRef}
