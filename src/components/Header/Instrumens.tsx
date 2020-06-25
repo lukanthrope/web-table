@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useActiveCell, useCellStyle } from '../../hooks';
+import { 
+  fontParamEquals,
+  shouldUseStyle,
+  ITALIC,
+  BOLD,
+  NORMAL,
+ } from '../../utils/styles';
 
 function Instruments() {
   const { activeCell } = useActiveCell();
   const [style, setStyle] = useCellStyle(activeCell);
+  const { fontWeight, fontStyle, background, color } = style;
 
-  const [bgColors, setBgColors] = useState<string[]>(['', '']);
+  const BG_COLOR_GRAY = 'graybg';
 
   const handleBackground = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setStyle('background', e.target.value);
@@ -16,34 +24,18 @@ function Instruments() {
   };
 
   const handleFontStyle = (): void => {
-    if (style.fontStyle === 'italic') {
-      setStyle('fontStyle', 'normal');
-      setBgColors(prev => {
-        prev[1] = '';
-        return prev;
-      });
+    if (fontParamEquals(fontStyle, ITALIC)) {
+      setStyle('fontStyle', NORMAL);
     } else {
-      setStyle('fontStyle', 'italic');
-      setBgColors(prev => {
-        prev[1] = 'graybg';
-        return prev;
-      });
+      setStyle('fontStyle', ITALIC);
     }
   };
 
   const handleFontWeight = (): void => {
-    if (style.fontWeight === 'bold') {
-      setStyle('fontWeight', 'normal');
-      setBgColors(prev => {
-        prev[0] = '';
-        return prev;
-      });
+    if (fontParamEquals(fontWeight, BOLD)) {
+      setStyle('fontWeight', NORMAL);
     } else {
-      setStyle('fontWeight', 'bold');
-      setBgColors(prev => {
-        prev[0] = 'graybg';
-        return prev;
-      });
+      setStyle('fontWeight', BOLD);
     }
   };
 
@@ -53,7 +45,7 @@ function Instruments() {
         <label>background</label>
         <input 
           type="color"
-          value={style.background}
+          value={background}
           onChange={handleBackground}
           />
       </div>
@@ -62,20 +54,20 @@ function Instruments() {
         <label>font</label>
         <input 
           type="color"
-          value={style.color}
+          value={color}
           onChange={handleColor}
           />
       </div>
 
       <section>
         <span 
-          className={`material-icons pointer graybg-hover ${bgColors[0]}`}
+          className={`material-icons pointer graybg-hover ${shouldUseStyle(fontParamEquals(fontWeight, BOLD), BG_COLOR_GRAY)}`}
           onClick={handleFontWeight}
           >
           format_bold
         </span>
         <span 
-          className={`material-icons pointer graybg-hover ${bgColors[1]}`} 
+          className={`material-icons pointer graybg-hover ${shouldUseStyle(fontParamEquals(fontStyle, ITALIC), BG_COLOR_GRAY)}`} 
           onClick={handleFontStyle}
           >
           format_italic

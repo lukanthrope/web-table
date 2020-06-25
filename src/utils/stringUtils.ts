@@ -12,7 +12,7 @@ export function countLetters(s: string): number {
   let count: number = 0;
 
   s.split('')
-    .map((el: string) => !isDigit(el) ? count++ : count);
+    .map((el: string) => !isDigit(el) && count++);
 
   return count;
 }
