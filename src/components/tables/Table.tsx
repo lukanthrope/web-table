@@ -10,9 +10,9 @@ function Table() {
 
   const initializeRow = (): void => {
     const r: string[] = [];
-    for (let i: number = 65; i <= 90; i++) {
+    for (let i: number = 65; i <= 90; i++)
       r.push(String.fromCharCode(i));
-    }
+    
     setRows(r);
   };
 

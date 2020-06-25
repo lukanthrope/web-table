@@ -47,6 +47,7 @@ function Instruments() {
           type="color"
           value={background}
           onChange={handleBackground}
+          data-testid="bg-color"
           />
       </div>
 
@@ -56,19 +57,26 @@ function Instruments() {
           type="color"
           value={color}
           onChange={handleColor}
+          data-testid="f-color"
           />
       </div>
 
       <section>
         <span 
-          className={`material-icons pointer graybg-hover ${shouldUseStyle(fontParamEquals(fontWeight, BOLD), BG_COLOR_GRAY)}`}
+          className={`material-icons pointer graybg-hover 
+            ${shouldUseStyle(fontParamEquals(fontWeight, BOLD), BG_COLOR_GRAY)}
+            `}
           onClick={handleFontWeight}
+          data-testid="font-weight"
           >
           format_bold
         </span>
         <span 
-          className={`material-icons pointer graybg-hover ${shouldUseStyle(fontParamEquals(fontStyle, ITALIC), BG_COLOR_GRAY)}`} 
+          className={`material-icons pointer graybg-hover
+            ${shouldUseStyle(fontParamEquals(fontStyle, ITALIC), BG_COLOR_GRAY)}
+            `} 
           onClick={handleFontStyle}
+          data-testid="font-style"
           >
           format_italic
         </span>
