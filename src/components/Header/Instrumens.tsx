@@ -11,7 +11,11 @@ import {
 function Instruments() {
   const { activeCell } = useActiveCell();
   const [style, setStyle] = useCellStyle(activeCell);
+<<<<<<< HEAD
   const { fontWeight, fontStyle, background, color } = style;
+=======
+  const { fontWeight, fontStyle } = style;
+>>>>>>> ea1a1f3161560812cee9b3f090de431513c92bc7
 
   const BG_COLOR_GRAY = 'graybg';
 
