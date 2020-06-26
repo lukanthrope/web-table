@@ -27,7 +27,7 @@ function excecute(toParse: string): string {
   let action: string = '';
 
   for(let j: number = 0; j < arr.length; j++ ) {
-    let toParse: string = arr[j];
+    let toParse: string = arr[j].trim();
     let len = toParse.length - 1;
     console.log(toParse[len])
     if (isAction(toParse[len])) {
