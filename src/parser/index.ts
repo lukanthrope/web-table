@@ -20,23 +20,23 @@ function excecute(toParse: string): string {
   let arr: string[] = devideStrings(s);
 
   if (!isBalanced(s)) return 'Syntax error';
-  console.log(arr)
+
   let result: number = 0;
   let tempStr: string = '';
   let tempStr2: string = '';
   let action: string = '';
 
   for(let j: number = 0; j < arr.length; j++ ) {
-    let toParse: string = arr[j];
+    let toParse: string = arr[j].trim();
     let len = toParse.length - 1;
-    console.log(toParse[len])
+
     if (isAction(toParse[len])) {
       toParse = `${toParse[len]}${toParse.substring(0, len)}`;
     }
     tempStr = result.toString();
-    console.log(toParse)
+
     for (let i: number = 0; i < toParse.length; i++) {
-      console.log(action)
+
       if (i === toParse.length - 1) {
         if (!isNaN(Number(tempStr2 + toParse[i])) && !isNaN(Number(tempStr)) && action !== '') {
           result = actions(action, Number(tempStr), Number(tempStr2 + toParse[i]));

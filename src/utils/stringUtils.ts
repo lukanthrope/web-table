@@ -28,25 +28,25 @@ export function incrementCellName(name: string): string {
 
 export function isBalanced (input: string): boolean {
 
-  let brackets = "[]{}()<>"
-  let stack = []
+  let brackets = "()";
+  let stack = [];
 
   for(let bracket of input) {
-    let bracketsIndex = brackets.indexOf(bracket)
+    let bracketsIndex = brackets.indexOf(bracket);
 
     if (bracketsIndex === -1){
-      continue
+      continue;
     }
 
     if(bracketsIndex % 2 === 0) {
-      stack.push(bracketsIndex + 1)
+      stack.push(bracketsIndex + 1);
     } else {
       if(stack.pop() !== bracketsIndex) {
         return false;
       }
     }
   }
-  return stack.length === 0
+  return stack.length === 0;
 }
 
 export function getInnerString(toParse: string): PartedString {
@@ -54,6 +54,7 @@ export function getInnerString(toParse: string): PartedString {
   let end: number = -1;
 
   let mid: number = Math.floor(toParse.length / 2);
+  // eslint-disable-next-line
   for (let i: number = mid, j: number = mid; i < toParse.length, j >= 0; i++, j--) {
     if (toParse[i] === '(') {
       start = i;
